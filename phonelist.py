@@ -61,3 +61,8 @@ while True: ## REPL - Read Execute Program Loop
     elif cmd == "QUIT":
         save_phonelist(conn)
         exit()
+    else:
+        print('\nInvalid command. Try again.\n')
+        for x in commands:
+            print(x)
+    print('Bye, see you L8R!')
