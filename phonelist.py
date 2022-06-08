@@ -16,9 +16,9 @@ def read_phonelist(C):
     rows = cur.fetchall()
     cur.close()
     return rows
-def add_phone(C, name, phone):
+def add_phone(C, name, phone, address):
     cur = C.cursor()
-    cur.execute(f"INSERT INTO phonelist VALUES ('{name}', '{phone}');")
+    cur.execute(f"INSERT INTO phonelist VALUES ('{name}', '{phone}', '{address}');")
     cur.close()
 def delete_phone(C, name):
     cur = C.cursor()
@@ -56,8 +56,9 @@ while True: ## REPL - Read Execute Program Loop
         print(read_phonelist(conn))
     elif cmd == "ADD":
         name = input("  Name: ").strip().title()
+        address = input("  Address: ").strip().title()
         phone = input("  Phone: ").strip()
-        add_phone(conn, name, phone)
+        add_phone(conn, name, address, phone)
     elif cmd == "DELETE":
         name = input("  Name: ").strip().title()
         delete_phone(conn, name)
