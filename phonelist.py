@@ -35,9 +35,12 @@ def save_phonelist(C):
 print("-----Hello and welcome to The List-----")
 
 commands = [
-    'ADD: Add a name to the list',
-    'LIST: Print the list of names',
-    'QUIT: End the program by pressing ctrl +c']
+    '\n',
+    ' ADD:   Add a name to the list',
+    ' LIST:  Print the list of names',
+    ' SAVE:  Save phonelist',
+    ' QUIT:  End the program by pressing ctrl +c',
+    ' HELP:  Command list options\n']
 
 
 
@@ -58,11 +61,15 @@ while True: ## REPL - Read Execute Program Loop
     elif cmd == "DELETE":
         name = input("  Name: ").strip().title()
         delete_phone(conn, name)
+    elif cmd == "SAVE":
+        save_phonelist(conn)
     elif cmd == "QUIT":
         save_phonelist(conn)
         exit()
+    elif cmd == "HELP":
+        for x in commands:
+            print(x)
     else:
         print('\nInvalid command. Try again.\n')
         for x in commands:
             print(x)
-    print('Bye, see you L8R!')
