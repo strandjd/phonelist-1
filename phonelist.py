@@ -20,9 +20,9 @@ def add_phone(C, name, phone, address):
     cur = C.cursor()
     cur.execute(f"INSERT INTO phonelist VALUES ('{name}', '{phone}', '{address}');")
     cur.close()
-def delete_phone(C, name):
+def delete_phone(C, id):
     cur = C.cursor()
-    cur.execute(f"DELETE FROM phonelist WHERE name = '{name}';")
+    cur.execute(f"DELETE FROM phonelist WHERE id = '{id}';")
     cur.close()
 def save_phonelist(C):
     cur = C.cursor()
@@ -36,11 +36,12 @@ print("-----Hello and welcome to The List-----")
 
 commands = [
     '\n',
-    ' ADD:   Add a name to the list',
-    ' LIST:  Print the list of names',
-    ' SAVE:  Save phonelist',
-    ' QUIT:  End the program by pressing ctrl +c',
-    ' HELP:  Command list options\n']
+    ' ADD:      Add a name to the list',
+    ' LIST:     Print the list of names',
+    ' SAVE:     Save phonelist',
+    ' DELETE:   Delete phone',
+    ' QUIT:     End the program by pressing ctrl +c',
+    ' HELP:     Command list options\n']
 
 
 
@@ -60,8 +61,8 @@ while True: ## REPL - Read Execute Program Loop
         phone = input("  Phone: ").strip()
         add_phone(conn, name, address, phone)
     elif cmd == "DELETE":
-        name = input("  Name: ").strip().title()
-        delete_phone(conn, name)
+        id = input("  ID: ").strip()
+        delete_phone(conn, id)
     elif cmd == "SAVE":
         save_phonelist(conn)
     elif cmd == "QUIT":
